@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 
+import "app_list_tile.dart";
+
 class AppDrawer extends StatelessWidget {
   const AppDrawer({Key? key}) : super(key: key);
 
@@ -11,72 +13,33 @@ class AppDrawer extends StatelessWidget {
           DrawerHeader(
             margin: EdgeInsets.zero,
             padding: EdgeInsets.zero,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.scaleDown,
-                image: AssetImage("assets/img/imc.png"),
-              ),
-            ),
             child: Stack(
               children: [
+                Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Image.asset("assets/img/imc.png"),
+                    ),
+                ),
                 Positioned(
-                  bottom: 12,
+                  bottom: 4,
                   left: 16,
                   child: Text(
                     "Menu".toUpperCase(),
                     style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
+                        fontSize: 22,
+                        fontWeight: FontWeight.w800,
                         letterSpacing: 2),
                   ),
                 ),
               ],
             ),
           ),
-          ListTile(
-            title: Row(
-              children: const [
-                Icon(Icons.home_outlined),
-                Padding(
-                  padding: EdgeInsets.only(left: 8),
-                  child: Text("Home"),
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, "home");
-            },
-          ),
-          ListTile(
-            title: Row(
-              children: const [
-                Icon(Icons.monitor_weight_outlined),
-                Padding(
-                  padding: EdgeInsets.only(left: 8),
-                  child: Text("IMC"),
-                ),
-              ],
-            ),
-            subtitle: const Text("Índice de Massa Corporal"),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, "imc");
-            },
-          ),
+          const AppListTile(Icons.home_outlined, "Home", "home"),
+          const AppListTile(Icons.monitor_weight_outlined, "IMC", "imc",
+              subTitle: "Índice de Massa Corporal"),
           const Divider(),
-          ListTile(
-            title: Row(
-              children: const [
-                Icon(Icons.feed_outlined),
-                Padding(
-                  padding: EdgeInsets.only(left: 8),
-                  child: Text("Sobre"),
-                ),
-              ],
-            ),
-            onTap: () {
-              Navigator.pushReplacementNamed(context, "about");
-            },
-          ),
+          const AppListTile(Icons.feed_outlined, "Sobre", "about"),
         ],
       ),
     );
